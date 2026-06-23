@@ -18,13 +18,10 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/NEtpython
-
             git pull origin main
-
-            pip3 install -r requirements.txt
-
+            
+            ./venv/bin/pip install -r requirements.txt
             pm2 delete frontpyth || true
 
-            pm2 start "streamlit run app.py --server.port 8501 --server.address 0.0.0.0" --name frontpyth
-
+            pm2 start "./venv/bin/python -m streamlit run app.py --server.port 8501 --server.address 0.0.0.0" --name frontpyth
             pm2 save
