@@ -19,9 +19,7 @@ jobs:
           script: |
             cd /home/ubuntu/NEtpython
             git pull origin main
-            
             ./venv/bin/pip install -r requirements.txt
             pm2 delete frontpyth || true
-
-            pm2 start "./venv/bin/python -m streamlit run app.py --server.port 8501 --server.address 0.0.0.0" --name frontpyth
+            pm2 start "uvicorn unified_main:app --host 0.0.0.0 --port 8001" --name frontpyth
             pm2 save
