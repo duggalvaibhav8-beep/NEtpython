@@ -21,5 +21,5 @@ jobs:
             git pull origin main
             ./venv/bin/pip install -r requirements.txt
             pm2 delete frontpyth || true
-            pm2 start "uvicorn unified_main:app --host 0.0.0.0 --port 8001" --name frontpyth
+              pm2 start "./venv/bin/python -m uvicorn run unified_main.py --server.port 8000 --server.address 0.0.0.0" --name backend
             pm2 save
