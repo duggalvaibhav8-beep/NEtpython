@@ -22,5 +22,5 @@ jobs:
             source venv/bin/activate
             pip install -r requirements.txt
             pm2 delete pytes || true
-            pm2 start "venv/bin/streamlit run app.py --server.port 8501 --server.address 0.0.0.0" --name pytes
+            pm2 start "venv/bin/streamlit run app.py" --name pytes
             pm2 save
